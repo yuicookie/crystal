@@ -82,7 +82,7 @@ const TREASURES = [
 	},
 	{
 		id: 9,
-		name: "キングチョコドロップのゼリー王冠",//
+		name: "巨大チョコドロップのゼリー王冠",//
 		amt: 1,
 		minp: 15,
 		maxp: 60,
