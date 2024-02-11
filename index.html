@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<head>
+	<title>クリスタル期待値計算ツール</title>
+	<link rel="icon" type="image/png" href="img/icon.png">
+	<link rel="apple-touch-icon" type="image/png" href="img/icon.png">
+	<link rel="icon" type="image/x-icon" href="img/icon.png" />
+
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="index.css" rel="stylesheet" />
+
+	<!-- <script src="assets/vendor/jquery/jquery.min.js"></script> -->
+	<!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+	<script src="jquery.js"></script>
+
+	<script src="index.js"></script>
+	<script src="treasures.js"></script>
+	<!-- Google tag (gtag.js) -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F7TD8KPXW"></script> -->
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-8F7TD8KPXW');
+	</script>
+</head>
+<body>
+	<h1 class="stroke"><img src="img/shop_icon_gem.png" style="width: 30px" />クリスタル期待値計算ツール</h1>
+	<div class="shadow hidden"></div>
+
+	<div class="container" id="treasures">
+		<div class="treasures">
+			<div class="empty-tr" id="tr-add-btn">
+				<div></div>
+				<b class="tr-add">+</b>
+			</div>
+			<div class="empty-tr empty-tr-temp">
+				<div></div>
+			</div>
+			<div class="empty-tr empty-tr-temp">
+				<div></div>
+			</div>
+			<div class="empty-tr empty-tr-temp">
+				<div></div>
+			</div>
+			<div class="empty-tr empty-tr-temp">
+				<div></div>
+			</div>
+		</div>
+		<div class="popup" id="tr-setting">
+			<div class="popup-toolbar">
+				<b class="popup-title" id="modal-title">宝物追加</b>
+				<span class="btn btn-gray popup-close" id="tr-setting-close"> &times; </span>
+			</div>
+			<div class="popup-content">
+				<div class="tr-setting-container" id="tr-selection">
+					<div class="setting-checkbox-container">
+						<input type="checkbox" id="lvl-9-checkbox" checked/>
+						<label for="lvl-9-checkbox" style="font-size: 20px">+9強化</label>
+					</div>
+					<div class="tr-select-category">ガチャ</div>
+					<div class="tr-select-container" id="tr-selection-gacha">
+						<!-- <div class="tr">
+              <img src="img/frame.png">
+              <img class="tr-img" src="img/tr/14.webp">
+              <img class="tr-img" src="img/passive.png">
+              <b class="tr-add-hover">+</b>
+            </div> -->
+					</div>
+					<div class="tr-select-category">クッキー/ペット</div>
+					<div class="tr-select-container" id="tr-selection-cookiepet"></div>
+					<div class="tr-select-category">レベルアップ</div>
+					<div class="tr-select-container" id="tr-selection-level"></div>
+					<div class="tr-select-category">限定</div>
+					<div class="tr-select-container" id="tr-selection-limited"></div>
+					<div class="tr-select-category">激変前の証</div>
+					<div class="tr-select-container" id="tr-selection-reward"></div>
+				</div>
+				<br />
+				<div class="tr-setting-container hidden" id="tr-one-setting">
+					<i id="tr-one-setting-serial">#1</i>
+					<div class="tr-setting-name">
+						<div class="tr" id="tr-setting-tr">
+							<img src="img/frame.png" />
+							<img class="tr-img" src="img/tr/14.webp" id="tr-setting-img" />
+							<img class="tr-img" src="img/passive.png" />
+							<b class="tr-lvl">+1</b>
+						</div>
+						<div class="empty-tr hidden" id="tr-setting-empty-tr">
+							<div></div>
+						</div>
+						<b id="tr-setting-tr-name"></b>
+					</div>
+					<div class="tr-setting-desc" id="tr-setting-desc">..</div>
+					<div style="font-size: 20px">
+						期待値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b id="tr-setting-exp"> 0.43</b
+						>個
+					</div>
+					<div></div>
+					<div>
+						<button class="btn-primary btn wide tr-btn" id="tr-copy-btn">複製</button>
+						<button class="btn-secondary btn gold wide tr-btn" id="tr-9-btn">+9</button>
+					</div>
+					<div>
+						<button class="btn-secondary btn tr-btn" id="tr-1-btn">+1</button>
+						<button class="btn-secondary btn tr-btn" id="tr-2-btn">+2</button>
+						<button class="btn-secondary btn tr-btn" id="tr-3-btn">+3</button>
+						<button class="btn-secondary btn tr-btn" id="tr-4-btn">+4</button>
+					</div>
+					<div>
+						<button class="btn-secondary btn tr-btn" id="tr-5-btn">+5</button>
+						<button class="btn-secondary btn tr-btn" id="tr-6-btn">+6</button>
+						<button class="btn-secondary btn tr-btn" id="tr-7-btn">+7</button>
+						<button class="btn-secondary btn tr-btn" id="tr-8-btn">+8</button>
+					</div>
+					<div>
+						<button class="btn-gray btn wide tr-btn" id="tr-0-btn">+0</button>
+						<button class="btn-red btn wide tr-btn" id="tr-remove-btn">削除</button>
+					</div>
+					<div style="text-align: right">
+						<button class="btn-secondary btn" id="tr-next-btn">></button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--     
+    <button class="btn-red btn">시작</button>
+    <button class="btn-primary btn">시작</button>
+    <button class="btn-gray btn gold">시작</button>
+
+    <button class="btn-secondary btn">시작123456789</button>
+    <div class="empty-tr">
+      <div>
+      </div>
+    </div>
+    <div class="empty-tr">
+      <div>
+      </div>
+      <b class="tr-add">+</b>
+    </div>
+    <div class="tr">
+      <img src="img/frame.png">
+      <img class="tr-img" src="img/tr/14.webp">
+      <img  class="tr-img" src="img/passive.png">
+      <b class="tr-lvl">+1</b>
+    </div> -->
+	</div>
+
+	<div class="container">
+    
+		<h2 class="resulttext">
+			期待値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-exp">0</b>個
+		</h2>
+		<h2 class="resulttext">
+			理論値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> 
+			<b id="total-max">0</b>個
+		</h2>
+		<span style="font-size: 20px;">
+			(確率:<span id="total-max-prob">100%</span>)
+			<!-- <br><span id="total-max-prob-lotto"></span> -->
+	</span>
+		<h2 class="resulttext">
+			最低値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-max">0</b>個
+		</h2>
+		<span style="font-size: 20px;">(確率:<span id="total-min-prob">100%</span>)</span>
+		<!-- <h2 class="resulttext">표준편차: <b id="total-std"></b></h2> -->
+		<div>
+			<button class="btn-primary btn" id="save-btn">保存する</button>
+      <button class="btn-secondary btn" id="share-btn">共有する</button>
+      <button class="btn-secondary btn" id="load-btn">読み込む</button>
+			<button class="btn-red btn" id="clear-btn">完全削除</button>
+		</div>
+	</div><br>
+  <div id="share-area">
+  </div><br>
+  <div style="text-align: left; display: inline-block;" id="desc-area" class="container">
+	<li>宝物を一度に追加する方法：</li>
+	<ol>
+		<li>希望の宝物を追加する</li>
+		<li>追加した宝物を選択して[複製]をクリック</li>
+		<li>複製する量を入力</li>
+	</ol>
+	<li>保存する: ブラウザに宝物の設定を保存して、読み込むことができます。</li>
+	<li>共有する: 宝物の設定をURLで共有できます。</li>
+	<li>読み込む: 保存した宝物の設定を読み込みます。</li>
+	
+  </div>
+  <div>
+	<!-- <button class="btn-primary btn" id="sim-btn">시뮬레이션</button> -->
+
+  </div>
+  <div id="toast" class="toast"></div>
+
+<footer >
+  <li>発動確率には誤差が生じる可能性があります。</li>
+  <li>目覚めたドラゴンの怒りバージョン時に入手可能だった記録トロフィーの宝物は、データが不足しているため、追加されていません。</li>
+  <li>制作者: jkvin114</li>
+  <li>翻訳者: Yui</li>
+</footer>
+</body>
+<!-- 
+                               .Nm,`  `                  ` ` .,` `    .......         ..
+                              `(NMNm.`   `           `     `.BW,`  .dMH9T777THNa,`   (9N.
+                            `  MNNMNMp.`    `     `     `  .8=zW,.M8Iv<~__1==<~?MN, J6=vb
+                              .NMNNMNMH,`                `.@===zM#zz<`    +=<~~(=TMdI==ld[
+                           `  (MNMNMMh.?N,   `           `dAaggd#z<~_    (v<~(+===dHyz==zH`
+                            ` MNMNMNNMMgNMm.`           ` `  `.MC<~~(+((z<~~(=l==v~W#7""YT'`
+                         `   .MNMTNMNNMMNMMMp. `  `  `        ,M<~_+==l=>~_+====<~(d#
+                            `(NMD~?MMNNNMNNNMN,`              .Mc(zl=lv<~(z=l==>~(1WF
+                          `  MN#<~~?B"T7qNMNNNMN,`           `.HMMMR=<~~(====z<~(zd#
+                           `.F<~~~~~~~(dMNNMMNMMMm.        ` .MHpfpMR_~(====v<~(uHB`
+                         `  J$~:~~:~:(MNMMMMN#<HNMMe `       (NfpfffWMmszl=v:(+HMMb
+                          ` MM#:~~_~~:JNNNMe~~~~<jdMN, `      WHfpppffWHMMHHMMMHpW@
+                           .NNN_(gNNaJ-dMNM5~(_(MNNNMNh,       7HMHkWpfpfpppppWHMY
+                         ` JMNNjMMNMNNMNMMNgMMNedNMMNMMMp ``     .dNpfffpWQHH#"^
+                           MMNNMNNMNMNNNNNMNMNMNMMMBT1(gMN, ``  `?HHQkppfM!
+                          .MNMNMNNMNNMMMMNNMMB"C((JgMMWB9Y9i   `  ..JXwXfM
+                         `JNMNMNMNMMNMMH"=<(JgNMHMNM#1z>;;;1O..(ztv<(NpfpM
+                          MMNMNMMH9=<(JgHMBMNM5;;;?T+OI1+++zttv?`  `JNfpW#
+                    ` `  .MM9TiJ+gMMMB9z+;+7>;;;;;;<jOztrv7!` _.    JNpfW@
+                       ` (MMMMMH9Iv<;;;;;1vz++++zOrOI?I<       _  ` dNpWM^
+       `  `  `  `      ` dBY1;<1zv;;;;;++OzOrOI<<===1..o   . ` ~_-  dNWP`
+     `  ` ..`     ` ` `  O;;;;+v1++OztOv7?!`    ~1l=<`,l<  _   ~ _. WNMo
+          Oo..     .....(OzzOtOv<<?!`   `  ` ` (<....Jlz<<___  _  _ MHWM,
+      `    ??11zzzzz<<<??!~`          `       .zlllzz<<~`   `_`  -+MM#VH[
+                         _           `..  __.(+<<<~~~`          .(FdNDltH
+                 `     ` _.`          _~__~_``` `          `  .(jM\dMIzdP
+           `  `          :~.     `   .`                `    .(jMNM MNWM]
+                         _  __.   ..`              `  `  .(jMMNNM@.NNWM!
+                       ` ~-   `    `              ` ..(+gMMNNMMNM\dMNWN
+                          `~_....      ` `   ...(J+gMMNMNNNMNNNM#.NMNpM\
+                            (MNN:`    ` (gggNMMMNMNNMNNMNNMNNMNM\MMMHpM!
+                          `.NMN#~  `    (NNMMNNMNNMNNMNNMMNMNMMD(M!MHWF
+                    `    `.NMNM#~   .   (NNNMNNNMNNMNNMNNMNNMF+NM^.MfW]
+                      ` `.MMNNM#_   ~   (NMMMMMNNMNMNMNNMNM#MNJD` .NfH\
+                       `.MNMNMNN_ `_~   (MN#!,MNMNNMNMMMMMY       JNfM{
+                    `  .dNNNMNNM+. :~ ` jMNb..MNMNNMNN# ?`      ` dNp@!
+                     ` dMNMNNMNNNg+m~  _dNMNMNMNNMNMMN#    `      HHpH!
+               ` ``.m.(MNMNNMNNMNNMMs..+NMNNNMNNMNNNMMF `       `.Hpp@!
+            ` `. .dNMMNNNMNNMNMNNMNNMMMMMNNMNNMNNMNNNMF          .MfpM!
+               .MB"TMNMMNMNMNMNMNMNMNNMNNMMNMNMNMNMMNM%       `  ,NkkN
+-->
