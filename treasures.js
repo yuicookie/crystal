@@ -3,6 +3,7 @@ const TYPE = {
 	CookiePet: 1,
 	Level: 2,
 	Limited: 3,
+	Trophy:4
 }
 const TREASURES = [
 	{
@@ -213,6 +214,280 @@ const TREASURES = [
 		type: TYPE.Level,
         webp:true
 	},
+	{
+		id: 201,
+		name: "新芽1ランクの貴重な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 50,
+		type: TYPE.Trophy
+	},
+	{
+		id: 202,
+		name: "新芽2ランクの貴重な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 50,
+		type: TYPE.Trophy
+	},
+	{
+		id: 203,
+		name: "新芽3ランクの貴重な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 50,
+		type: TYPE.Trophy
+	},
+	{
+		id: 204,
+		name: "新芽4ランクの貴重な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 50,
+		type: TYPE.Trophy
+	},
+	{
+		id: 205,
+		name: "新芽5ランクの貴重な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 50,
+		type: TYPE.Trophy
+	},
+	{
+		id: 206,
+		name: "重水1ランクのすごい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 51,
+		type: TYPE.Trophy
+	},
+	{
+		id: 207,
+		name: "重水2ランクのすごい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 51,
+		type: TYPE.Trophy
+	},{
+		id: 208,
+		name: "重水3ランクのすごい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 51,
+		type: TYPE.Trophy
+	},{
+		id: 209,
+		name: "重水4ランクのすごい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 51,
+		type: TYPE.Trophy
+	},{
+		id: 210,
+		name: "重水5ランクのすごい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 51,
+		type: TYPE.Trophy
+	},{
+		id: 211,
+		name: "高水準1ランクの巨大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 52,
+		type: TYPE.Trophy
+	},
+	{
+		id: 212,
+		name: "高水準2ランクの巨大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 52,
+		type: TYPE.Trophy
+	},
+	{
+		id: 213,
+		name: "高水準3ランクの巨大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 52,
+		type: TYPE.Trophy
+	},
+	{
+		id: 214,
+		name: "高水準4ランクの巨大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 52,
+		type: TYPE.Trophy
+	},
+	{
+		id: 215,
+		name: "高水準5ランクの巨大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 52,
+		type: TYPE.Trophy
+	},
+	{
+		id: 216,
+		name: "ヒーロー1ランクのヒーロー栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 53,
+		type: TYPE.Trophy
+	},
+	{
+		id: 217,
+		name: "ヒーロー2ランクのヒーロー栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 53,
+		type: TYPE.Trophy
+	},{
+		id: 218,
+		name: "ヒーロー3ランクのヒーロー栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 53,
+		type: TYPE.Trophy
+	},{
+		id: 219,
+		name: "ヒーロー4ランクのヒーロー栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 53,
+		type: TYPE.Trophy
+	},{
+		id: 220,
+		name: "ヒーロー5ランクのヒーロー栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 53,
+		type: TYPE.Trophy
+	},
+	{
+		id: 221,
+		name: "超人1ランクの偉大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 54,
+		type: TYPE.Trophy
+	},
+	{
+		id: 222,
+		name: "超人2ランクの偉大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 54,
+		type: TYPE.Trophy
+	},{
+		id: 223,
+		name: "超人3ランクの偉大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 54,
+		type: TYPE.Trophy
+	},{
+		id: 224,
+		name: "超人4ランクの偉大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 54,
+		type: TYPE.Trophy
+	},{
+		id: 225,
+		name: "超人5ランクの偉大な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 54,
+		type: TYPE.Trophy
+	},
+	{
+		id: 226,
+		name: "帝王1ランクの幻想的な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 56,
+		type: TYPE.Trophy
+	},
+	{
+		id: 227,
+		name: "帝王2ランクの幻想的な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 56,
+		type: TYPE.Trophy
+	},
+	{
+		id: 228,
+		name: "帝王3ランクの幻想的な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 56,
+		type: TYPE.Trophy
+	},
+	{
+		id: 229,
+		name: "帝王4ランクの幻想的な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 56,
+		type: TYPE.Trophy
+	},
+	{
+		id: 230,
+		name: "帝王5ランクの幻想的な栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 56,
+		type: TYPE.Trophy
+	},
+	{
+		id: 231,
+		name: "レジェンド1ランクのレジェンド栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 58,
+		type: TYPE.Trophy
+	},{
+		id: 232,
+		name: "レジェンド2ランクのレジェンド栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 58,
+		type: TYPE.Trophy
+	},{
+		id: 233,
+		name: "レジェンド3ランクのレジェンド栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 58,
+		type: TYPE.Trophy
+	},{
+		id: 234,
+		name: "レジェンド4ランクのレジェンド栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 58,
+		type: TYPE.Trophy
+	},{
+		id: 235,
+		name: "レジェンド5ランクのレジェンド栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 58,
+		type: TYPE.Trophy
+	},
+	{
+		id: 236,
+		name: "神ランクの輝かしい栄光のトロフィー",//
+		amt: 1,
+		minp: 40,
+		maxp: 60,
+		type: TYPE.Trophy
+	},
 ]
 const REWARD_TREASURES = [
 	{
@@ -381,12 +656,25 @@ function getProb(p, maxp, lvl) {
 	if (lvl <= 0) return p
 	if (lvl >= 9) return maxp
     if(p === maxp) return p
-	if (Number.isInteger((maxp - p) / 9)) {
-		return round(p + ((maxp - p) / 9) * lvl,-2)
-	} else if(maxp - p < 9){
-		return round(p + floor((maxp - p) / 9,-1) * lvl,-2)
+
+	let diff = maxp - p
+	if (Number.isInteger(diff / 9)) {
+		return round(p + (diff / 9) * lvl,-2)
 	}
-    else{
-		return round(p + floor((maxp - p) / 9,-1) * lvl,-2)
+    else if(Number.isInteger(diff / 10)){
+		return round(p + diff / 10 * lvl,-2)
 	}
+	else {
+		return round(p + floor(diff / 9,-1) * lvl,-2)
+	}
+}
+function isRewardTr(tr){
+	return tr.id >= 100 && tr.id < 200
+}
+function getImg(tr){
+	let isReward = isRewardTr(tr)
+	let src = `img/tr/${tr.id}.` + (tr.webp ? "webp" : "png")
+	if (isReward) src = `img/tr/reward/tr_reward_${tr.minscore}00.` + (tr.webp ? "webp" : "png")
+	if(tr.id>=200) src = `img/tr/trophy/trophy (${tr.id-200}).png`
+	return src
 }

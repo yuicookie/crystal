@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<head>
+<html prefix="og: http://ogp.me/ns#">
 	<title>期待値計算ツール</title>
 	<link rel="icon" type="image/png" href="img/icon.png">
 	<link rel="apple-touch-icon" type="image/png" href="img/icon.png">
 	<link rel="icon" type="image/x-icon" href="img/icon.png" />
-
+	<meta property="og:title" content="期待値計算ツール"/>
+	<meta property="og:type" content="article"/>
+	<meta name="description"
+	content='쿠키런 for kakao クリスタル宝物 期待値計算/ログイン報酬シミュレーション/ログイン報酬分布予測/成長予測'>
+	<meta property="og.description"
+	content='쿠키런 for kakao クリスタル宝物 期待値計算/ログイン報酬シミュレーション/ログイン報酬分布予測/成長予測'>
+	<meta property="og:image" content="img/main.png"> 
+	<!-- <meta name="google-site-verification" content="j2u46F_6T-eB6dndvcvJviR4GqWkin4nO58_zP0VNZg" /> -->
 	<meta charset="utf-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="width=device-width, initial-scale=0.9" name="viewport" />
 	<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 	<link href="index.css" rel="stylesheet" />
 
 	<!-- <script src="assets/vendor/jquery/jquery.min.js"></script> -->
 	<!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-	<script src="jquery.js"></script>
-
+	<script src="library/jquery.js"></script>
+	<script src="math.js"></script>
 	<script src="index.js"></script>
 	<script src="treasures.js"></script>
+	<script src="growth.js"></script>
+	<script src="attendance.js"></script>
+
 	<!-- Google tag (gtag.js) -->
 	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F7TD8KPXW"></script> -->
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+		window.dataLayer = window.dataLayer || []
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+		gtag("js", new Date())
 
-	gtag('config', 'G-8F7TD8KPXW');
+		gtag("config", "G-8F7TD8KPXW")
 	</script>
+	<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+	<!-- <script src="https://code.highcharts.com/highcharts-more.js"></script> -->
+	<!-- <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script> -->
+	<script src="library/highcharts.js"></script>
+	<script src="library/highcharts-more.js"></script>
+	<script src="library/histogram-bellcurve.js"></script>
 </head>
 <body>
+	<!-- <p class="hidden"> 쿠키런 for kakao 크리스탈보물 기댓값 계산/출석보상 시뮬레이션/출석보상 분포 예측/성장치 예측</p> -->
 	<h1 class="stroke"><img src="img/shop_icon_gem.png" style="width: 30px" />クリスタル期待値計算ツール</h1>
 	<div class="shadow hidden"></div>
 
@@ -77,6 +96,8 @@
 					<div class="tr-select-container" id="tr-selection-limited"></div>
 					<div class="tr-select-category">激変前の証</div>
 					<div class="tr-select-container" id="tr-selection-reward"></div>
+					<div class="tr-select-category">3周年トロフィー</div>
+					<div class="tr-select-container" id="tr-selection-trophy"></div>
 				</div>
 				<br />
 				<div class="tr-setting-container hidden" id="tr-one-setting">
@@ -150,56 +171,168 @@
 	</div>
 
 	<div class="container">
-    
-		<h2 class="resulttext">
-			期待値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-exp">0</b>個
-		</h2>
-		<h2 class="resulttext">
-			理論値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> 
-			<b id="total-max">0</b>個
-		</h2>
-		<span style="font-size: 20px;">
-			(確率:<span id="total-max-prob">100%</span>)
-			<!-- <br><span id="total-max-prob-lotto"></span> -->
-	</span>
-		<h2 class="resulttext">
-			最低値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-max">0</b>個
-		</h2>
-		<span style="font-size: 20px;">(確率:<span id="total-min-prob">100%</span>)</span>
-		<!-- <h2 class="resulttext">표준편차: <b id="total-std"></b></h2> -->
+		<div class="text-container" style="position: relative;">
+			<span id="result-hide-btn" class="btn btn-gray btn-small">&#9664;</span><!--閉じる-->
+			<!-- 펼치기&#9660; -->
+			<h2 class="resulttext">
+				期待値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-exp">0</b>個
+			</h2>
+			<div id="hidden-result" class="">
+				<h2 class="resulttext">
+					理論値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-max">0</b>個
+				</h2>
+				<span style="font-size: 20px">
+					(確率:<span id="total-max-prob">100%</span>)
+					<!-- <br><span id="total-max-prob-lotto"></span> -->
+				</span>
+				<h2 class="resulttext">
+					最低値:<img src="img/shop_icon_gem.png" style="vertical-align: middle" /> <b id="total-max">0</b>個
+				</h2>
+				<span style="font-size: 20px">(確率:<span id="total-min-prob">100%</span>)</span>
+				<!-- <h2 class="resulttext">표준편차: <b id="total-std"></b></h2> -->
+				<hr />
+				<h2 class="resulttext">1ヶ月ログインすると...?</h2>
+				<span class="months"
+					><img src="img/pet_egg.png" height="50px" style="vertical-align: middle" /> ペットガチャ
+					<b class="months-val">0</b>個</span
+				>
+				<span class="months"
+					><img src="img/ticket.png" height="50px" style="vertical-align: middle" /> 宝物ガチャ
+					<b class="months-val">0</b>個</span
+				>
+				<span class="months"
+					><img src="img/treasure_box.png" height="50px" style="vertical-align: middle" /> 6+1 宝物ガチャ
+					<b class="months-val">0</b>個</span
+				>
+
+			</div>
+			
+		</div>
+		<br /><br />
 		<div>
 			<button class="btn-primary btn" id="save-btn">保存する</button>
-      <button class="btn-secondary btn" id="share-btn">共有する</button>
-      <button class="btn-secondary btn" id="load-btn">読み込む</button>
+			<button class="btn-secondary btn" id="share-btn">共有する</button>
+			<button class="btn-secondary btn" id="load-btn">読み込む</button>
 			<button class="btn-red btn" id="clear-btn">完全削除</button>
 		</div>
-	</div><br>
-  <div id="share-area">
-  </div><br>
-  <div style="text-align: left; display: inline-block;" id="desc-area" class="container">
-	<li>宝物を一度に追加する方法：</li>
-	<ol>
-		<li>希望の宝物を追加する</li>
-		<li>追加した宝物を選択して[複製]をクリック</li>
-		<li>複製する量を入力</li>
-	</ol>
-	<li>保存する: ブラウザに宝物の設定を保存して、読み込むことができます。</li>
-	<li>共有する: 宝物の設定をURLで共有できます。</li>
-	<li>読み込む: 保存した宝物の設定を読み込みます。</li>
-	
-  </div>
-  <div>
-	<!-- <button class="btn-primary btn" id="sim-btn">시뮬레이션</button> -->
+	</div>
 
-  </div>
-  <div id="toast" class="toast"></div>
+	<div class="container">
+		<hr>
+		<button class="btn-primary btn btn-small" id="attend-btn">ログイン報酬シミュレータ</button>
 
-<footer >
-  <li>発動確率には誤差が生じる可能性があります。</li>
-  <li>目覚めたドラゴンの怒りバージョン時に入手可能だった記録トロフィーの宝物は、データが不足しているため、追加されていません。</li>
-  <li>制作者: jkvin114</li>
-  <li>翻訳者: Yui</li>
-</footer>
+		<button class="btn-secondary btn btn-small" id="sim-btn">報酬予測</button>
+		<button class="btn-secondary btn btn-small" id="growth-btn">成長値予測</button>
+	</div>
+	<div class="container hidden" id="loading">
+		<br />
+		<br /><br /><br /><br />
+		<img src="img/loading.gif" width="70px" />
+	</div>
+	<div class="container hidden" id="sim-result-container">
+		<div id="distribution"></div>
+		<br />
+		<br />
+		<div id="sim-result" class="">
+			<div>
+				<img src="img/cart.png" width="90px" style="position: absolute; top: 10px; right: 10px" />
+				<p id="quantiles"></p>
+				<hr />
+
+				<div>
+					<input type="text" placeholder="ログイン報酬個数入力" id="check-prob-input" /><br />
+					<button class="btn-secondary btn" id="check-prob-btn">報酬確率予測</button>
+					<h3 id="check-prob-result"></h3>
+					<sub><li>宝物の数が少ないか、確率が低すぎると正確ではない可能性があります。 参考のためにのみ使用してください。</li> </sub>
+				</div>
+
+				<hr class="lvl-9-report hidden" />
+				<div class="lvl-9-report hidden">
+					<h2 id="lvl-9-report-title ">全て+9強化時:</h2>
+					<span class="months">期待値<b class="lvl-9-report-val"></b>上昇！(<b class="lvl-9-report-val"></b>)</span>
+					<p id="quantiles-9"></p>
+					<button id="to-lvl9-btn" class="btn-primary btn">全て+9に変更</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container hidden" id="growth-container">
+		<div style="position: relative;">
+			<img src="img/cheer.png" id="cheer-img" > 
+			<div id="growth-graph"></div>
+		</div>
+		<br>
+		<div id="growth-result" class="" style="position: relative;">
+				<h4>現在: <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個</h4>
+				<h4>全て+9強化時: <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個</h4>
+
+				<h4>1ヶ月後: <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個</h4>
+				<h4>6ヶ月後: <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個</h4>
+				<h4 style="font-size: 22px;">1年後:  <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個<span style="font-size: 15px;color: gray; " id="growth-error"></span></h4>
+				<h4 style="font-size: 22px;">1年間の総獲得量: <img src="img/shop_icon_gem.png" style="vertical-align: middle" /><b class="growth-val">0</b>個<span style="font-size: 15px;color: gray; " id="growth-sum-error"></span></h4>
+
+				<hr>
+				<p>
+					次のように仮定した予測値です。:
+					<ul>
+						<li>獲得したクリスタルを全て6+1宝物ガチャに投資(クリスタル119個)</li>
+						<li>現在の宝物は全て+9強化、ガチャから入手した宝物も即+9強化</li>
+						<li>イベント等のクリスタル報酬を考慮せず、毎日欠かさずログイン</li>
+						<li>ガチャで引いた宝物がクリスタル宝物である確率:1.8%(推定値、95%標本誤差±0.491%)</li>
+						<li>「神聖なクリスタル剣」(0.65%)と「パールクリスタルイヤリング」(0.21%)を除く全てのクリスタル宝物は同じ確率</li>
+					</ul>
+				</p>
+			<img src="img/cart.png" width="90px" style="position: absolute; top: 10px; right: 10px" >
+		</div>
+	</div>
+	<div class="container">
+		<div style="text-align: left; display: inline-block" id="desc-area">
+			<li>宝物を一度に追加する方法：</li>
+			<ol>
+				<li>希望の宝物を追加する</li>
+				<li>追加した宝物を選択して[複製]をクリック</li>
+				<li>複製する量を入力</li>
+			</ol>
+			<li>保存する: ブラウザに宝物の設定を保存して、読み込むことができます。</li>
+			<li>共有する: 宝物の設定をURLで共有できます。</li>
+			<li>読み込む: 保存した宝物の設定を読み込みます。</li>
+		</div>
+	</div>
+	<div class="modal text-container hidden" id="attendance-modal">
+		<div>
+			<span id="attendance-total">ログイン報酬: <b id="attendance-total-val">0</b>個</span>
+			<div id="reward-container">
+				<!-- <div class="reward-item">
+					<div class="tr">
+						<img src="img/frame.png">
+						<img class="tr-img" src="img/tr/14.webp">
+						<img  class="tr-img" src="img/passive.png">
+						<b class="tr-lvl">+1</b>
+					  </div>
+					<div style="padding-top: 7px;">
+						<span><<b>보물</b>>의 효과로</span><br>
+						<span class="reward-item-amt">2 크리스탈이 지급되었습니다</span>
+					</div>
+				</div> -->
+			</div>
+			<div>
+				<p></p>
+				<!-- <button class="btn btn-secondary" id="share-attend-btn" style="float: left;">共有</button> -->
+				<button class="btn btn-secondary wide" id="close-attend-btn">確認</button>
+			</div>
+		</div>
+	</div>
+	<div class="empty-tr" id="tr-add-floating-btn">
+		<div></div>
+		<b class="tr-add">+</b>
+	</div>
+	<div id="toast" class="toast"></div>
+
+	<footer>
+		<li>発動確率には誤差が生じる可能性があります。</li>
+		<li>制作者: jkvin114</li>
+		<li>翻訳者: Yui</li>
+	</footer>
 </body>
 <!-- 
                                .Nm,`  `                  ` ` .,` `    .......         ..
