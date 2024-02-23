@@ -510,7 +510,7 @@ h1{
 #squirrel-text{
     position: absolute;
     bottom: 150px;
-    left: 150px;
+    left: 140px;
 }
 .reward-item{
     border-bottom: 5px dashed var(--col-bg-dark);
