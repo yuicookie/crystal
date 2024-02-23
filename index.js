@@ -244,6 +244,7 @@ function main() {
 		gtag("event", "attendance", {})
 		let rewards = genAttendenceReward()
 		showAttendence(rewards)
+		document.getElementById("reward-container").scroll({top: 0,});//スクロール一番上
 	})
 	$onclick("#close-attend-btn",closeAttendance)
 	$onclick("#share-attend-btn",share)
@@ -415,7 +416,7 @@ function showToast(msg) {
 function save() {
 	const str = encodeCurrentState()
 	if(!str || str===""){
-		showToast("保存された設定はありません。")
+		showToast("宝物を選択してください。")
 		return
 	}
 	if (!confirm("設定をブラウザに保存しますか？以前に保存された設定は削除されます。")) return
