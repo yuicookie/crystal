@@ -213,6 +213,38 @@ const TREASURES = [
 		maxp: 15,
 		type: TYPE.Level,
         webp:true
+	},{
+		id: 25,
+		name: "小さなケーキ犬専用カップケーキ",//
+		amt: 11,
+		minp: 1,
+		maxp: 11,
+		type: TYPE.CookiePet,
+	},
+	{
+		id: 26,
+		name: "11周年記念ゴールドフォトフレーム",//
+		amt: 11,
+		minp: 1,
+		maxp: 11,
+		type: TYPE.Limited,
+		expiration :"2024-12-31"
+	},{
+		id: 27,
+		name: "11周年記念クリスタルフォトフレーム",//
+		amt: 11,
+		minp: 1,
+		maxp: 11,
+		type: TYPE.Limited,
+		expiration :"2024-12-31"
+
+	},{
+		id: 28,
+		name: "リスのキラキラクリスタルジュエリーボックス",//
+		amt: 1,
+		minp: 62,
+		maxp: 72,
+		type: TYPE.Limited,
 	},
 	{
 		id: 201,
